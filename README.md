@@ -2,6 +2,14 @@
 
 A tiny dependency-free javascript library built on a [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) with minimal configuration, yet sufficiently variable. Its size is only ~1.8 kb after minification and zipping.
 
+## Features
+
+- closing the dialog using the `escape` key.
+- closing the dialog by click on the [backdrop](#styling) or element with the [corresponding data attribute](#actions).
+- loading [external styles](#stylesheets).
+- preventing scrolling of the page when displaying the dialog.
+- simple [configuration](#configuration) and [api](#properties)
+
 ## Installation
 
 Npm
@@ -21,7 +29,7 @@ CDN
 Npm
 
 ```javascript
-import Dialog from '@js4y/dialog';
+import {Dialog} from '@js4y/dialog';
 
 new Dialog({
     content: 'Hello world!'
