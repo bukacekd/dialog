@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="cs">
+    <head>
+        <meta charset="utf-8">
+        <title>@js4y/Dialog - tiny dependency-free JavaSript ES6 library built on a dialog element with minimal configuration.</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="Dialog is a tiny dependency-free javascript library built on a dialog element with minimal configuration, yet sufficiently variable. Its size is only ~1.9 kb after minification and zipping.">
+        <meta name="keywords" content="alert, confirm, dialog, modal, popup, prompt, window">
+        
+        
+
+        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        
+        
+        
+        
+      <script type="module" crossorigin src="/assets/index-f82ff5ca.js"></script>
+      <link rel="stylesheet" href="/assets/index-0e449b98.css">
+      <link rel="stylesheet" href="/assets/base-dialog-77b30043.css">
+      <link rel="stylesheet" href="/assets/fade-dialog-97e970c6.css">
+      <link rel="stylesheet" href="/assets/translate-dialog-7db229b2.css">
+    </head>
+
+    <body>
+        <template>
+            <h1>Do you want to continue?</h1>
+            <button data-dialog-action="resolve close">Yes</button>
+            <button data-dialog-action="reject close">No</button>
+        </template>
+
+        <header>
+            <h1 class="header__heading">@js4y/Dialog</h1>
+
+            <a href="https://www.npmjs.com/package/@js4y/dialog" aria-label="view on Npm" target="_blank">
+                <svg aria-hidden="true" class="header__icon" viewBox="0 0 32 32">
+                    <path d="M3.766 31.965A3.524 3.524 0 0 1 .242 28.44V3.761A3.524 3.524 0 0 1 3.766.239H28.44a3.525 3.525 0 0 1 3.528 3.524v24.68a3.525 3.525 0 0 1-3.528 3.523Zm1.761-5.285V5.527H26.68V26.68h-5.285V10.813h-5.29V26.68Zm0 0" fill-rule="evenodd"/>
+                </svg>                
+            </a>
+
+            <a href="https://github.com/bukacekd/dialog" aria-label="view on GitHub" target="_blank">
+                <svg aria-hidden="true" class="header__icon" viewBox="0 0 32 32">
+                    <path d="M16 0c8.84 0 16 7.16 16 16 0 6.875-4.387 12.98-10.898 15.18-.801.16-1.102-.34-1.102-.758 0-.543.02-2.262.02-4.402 0-1.5-.5-2.461-1.079-2.961 3.559-.399 7.297-1.758 7.297-7.899 0-1.762-.617-3.18-1.636-4.3.16-.4.718-2.04-.16-4.239 0 0-1.34-.441-4.403 1.64a14.709 14.709 0 0 0-4-.542c-1.36 0-2.719.18-4 .543-3.059-2.063-4.398-1.64-4.398-1.64-.88 2.198-.32 3.839-.16 4.237C6.46 11.98 5.84 13.422 5.84 15.16c0 6.121 3.719 7.5 7.281 7.899-.46.402-.883 1.101-1.02 2.14-.921.422-3.222 1.102-4.66-1.32-.3-.48-1.203-1.66-2.46-1.64-1.34.023-.54.761.019 1.062.68.379 1.46 1.8 1.64 2.258.32.902 1.36 2.62 5.38 1.882 0 1.34.02 2.598.02 2.98 0 .419-.302.9-1.099.759A15.993 15.993 0 0 1 0 16C0 7.16 7.16 0 16 0Zm0 0"/>
+                </svg>
+            </a>
+        </header>
+
+        <main>
+            <section>
+                <h2>Introduction</h2>
+
+                <p>
+                    Dialog is a tiny dependency-free javascript library built on a dialog element with minimal configuration,
+                    yet sufficiently variable. Its size is only ~1.9 kb after minification and zipping.
+                </p>
+
+                <h2>Features</h2>
+
+                <ul>
+                    <li>
+                        closing the dialog using the <code>escape</code> key
+                    </li>
+                    <li>
+                        closing the dialog by click on the <a href="https://github.com/bukacekd/dialog#styling">backdrop</a>
+                        or element with the <a href="https://github.com/bukacekd/dialog#actions">corresponding data attribute</a>
+                    </li>
+                    <li>loading <a href="https://github.com/bukacekd/dialog#stylesheets">external styles</a>
+                    </li>
+                    <li>
+                        preventing scrolling of the page when displaying the dialog
+                    </li>
+                    <li>
+                        simple <a href="https://github.com/bukacekd/dialog#configuration">configuration</a>
+                        and <a href="https://github.com/bukacekd/dialog#properties">api</a>
+                    </li>
+                </ul>
+
+            </section>
+
+            <aside>
+                <h2>Configuration</h2>
+
+                <form>
+                    <label>
+                        Content Type
+
+                        <select name="type">
+                            <option value="ajax">Ajax request</option>
+                            <option value="template">HTML template</option>
+                            <option selected value="html">HTML text</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Processing of actions
+                        
+                        <select name="action">
+                            <option value="automatic">Automatic</option>
+                            <option value="manual">Manual</option>
+                        </select>
+                    </label>
+
+                    <label>
+                        Animation
+                        
+                        <select name="animation">
+                            <option value="base">None</option>
+                            <option value="fade">Fade</option>
+                            <option value="translate">Fade + Translate</option>
+                        </select>
+                    </label>
+
+                    <fieldset>
+                        <legend>Callback functions</legend>
+
+                        <label>
+                            <input type="checkbox" name="callback" value="open"> Open
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="callback" value="close"> Close
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="callback" value="then"> Then
+                        </label>
+
+                        <label>
+                            <input type="checkbox" name="callback" value="catch"> Catch
+                        </label>
+                    </fieldset>
+
+                    <button>Try it!</button>
+                </form>
+            </aside>
+
+            <section>
+                <h2>JavaScript source code</h2>
+
+                <pre class="language-js"><code></code></pre>
+
+                <h2>CSS source code</h2>
+
+                <pre class="language-css"><code></code></pre>
+            </section>
+        </main>
+
+        <footer class="footer">
+            Built by <a href="https://github.com/bukacekd"><b>David Bukacek</b></a>
+        </footer>
+
+        
+    </body>
+</html>

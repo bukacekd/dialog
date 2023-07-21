@@ -1,0 +1,1 @@
+dialog{translate:0 15%}dialog,dialog::backdrop{opacity:0;transition:opacity .3s,translate .3s}dialog::backdrop{pointer-events:none;background-color:#0009}[data-dialog-state=open],[data-dialog-state=open]::backdrop{opacity:1;translate:none}[data-dialog-state=close]{translate:0 -15%}
