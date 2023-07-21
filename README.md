@@ -1,13 +1,19 @@
 # Dialog
 
-A tiny dependency-free javascript library built on a [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) with minimal configuration, yet sufficiently variable. Its size is only ~1.8 kb after minification and zipping.
+A tiny dependency-free javascript library built on a [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) with minimal configuration, yet sufficiently variable. Its size is only ~1.9 kb after minification and zipping.
+
+Live Demo: https://bukacekd.github.io/Dialog
+
+## Demo
+
+Try the library in action.
 
 ## Features
 
-- closing the dialog using the `escape` key.
-- closing the dialog by click on the [backdrop](#styling) or element with the [corresponding data attribute](#actions).
-- loading [external styles](#stylesheets).
-- preventing scrolling of the page when displaying the dialog.
+- closing the dialog using the `escape` key
+- closing the dialog by click on the [backdrop](#styling) or element with the [corresponding data attribute](#actions)
+- loading [external styles](#stylesheets)
+- preventing scrolling of the page when displaying the dialog
 - simple [configuration](#configuration) and [api](#properties)
 
 ## Installation
@@ -327,12 +333,14 @@ The dialog does not contain any styles, except for the basic styles specific to 
 Examples of animated dialogs:
 
 ```css
-    dialog, dialog::backdrop {
+    dialog,
+    dialog::backdrop {
         opacity: 0;
         transition: opacity .3s;
     }
 
-    [data-dialog-state="open"] {
+    [data-dialog-state="open"],
+    [data-dialog-state="open"]::backdrop {
         opacity: 1;
     }
 
@@ -342,12 +350,14 @@ Examples of animated dialogs:
         translate: 0 15%;
     }
 
-    dialog, dialog::backdrop {
+    dialog,
+    dialog::backdrop {
         opacity: 0;
         transition: opacity .3s, translate .3s;
     }
 
-    [data-dialog-state="open"] {
+    [data-dialog-state="open"],
+    [data-dialog-state="open"]::backdrop {
         opacity: 1;
         translate: none;
     }
