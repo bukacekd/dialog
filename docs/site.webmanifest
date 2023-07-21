@@ -1,6 +1,6 @@
 {
-    "name": "@js4y Dialog",
-    "short_name": "@js4y Dialog",
+    "name": "js4y Dialog",
+    "short_name": "js4y Dialog",
     "icons": [
         {
             "src": "/android-chrome-192x192.png",
