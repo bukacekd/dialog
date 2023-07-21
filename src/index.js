@@ -21,7 +21,7 @@ export class Dialog {
 	#resolve;
 	#sourceTarget;
 	#state = STATES.PENDING;
-	#styleSheets;
+	#styleSheets = new Map();
 
 	constructor({className, content, id, open, close, styleSheets} = {}) {
 		const instance = [...dialogInstances].find(dialog => dialog.element.id === id);
@@ -31,10 +31,11 @@ export class Dialog {
 			return instance;
 		}
 
-		this.#callbacks   = {close, open};
-		this.element      = document.createElement('dialog');
-		this.#styleSheets = [].concat(styleSheets).filter(sheet => typeof sheet === 'string');
-		
+		this.#callbacks = {close, open};
+		this.element    = document.createElement('dialog');
+
+		this.#findStyleSheets([].concat(styleSheets).filter(sheet => typeof sheet === 'string'));
+
 		this.#events = {
 			click: this.#onClick.bind(this),
 			keydown: this.#onKeydown.bind(this),
@@ -61,6 +62,22 @@ export class Dialog {
 		return [...visibleDialogs].pop() === this;
 	}
 
+	#attachStyleSheets() {
+		return Promise.allSettled([...this.#styleSheets].map(([url, sheet]) => new Promise((resolve, reject) => {
+			if (sheet) {
+				return resolve();
+			}
+
+			const resource = document.createElement('link');
+			resource.href = url;
+			resource.rel = 'stylesheet';
+			resource.addEventListener('load', resolve);
+			resource.addEventListener('error', reject);
+			document.head.appendChild(resource);
+			this.#styleSheets.set(url, resource);
+		})));
+  	}
+
 	#clearTimeouts() {
 		if (this.#canClearTimeouts) {
 			clearTimeout(this.#closeTimeout);
@@ -68,6 +85,24 @@ export class Dialog {
 		}
 
 		this.#canClearTimeouts = true;
+	}
+
+	#detachStyleSheets() {
+		[...this.#styleSheets].forEach(([url, sheet]) => {
+			sheet.remove();
+			this.#styleSheets.set(url, null);
+		});
+	}
+
+	#findStyleSheets(styleSheets) {
+		styleSheets.forEach(sheet => {
+			const url = typeof sheet === 'string' ? new URL(sheet, document.baseURI).href : sheet.href;
+
+			if (!this.#styleSheets.has(url)) {
+				this.#styleSheets.set(url, null);
+				sheet.remove?.();
+			}
+		});
 	}
 
   	#lockScroll(force) {
@@ -137,24 +172,7 @@ export class Dialog {
 		}
         this.#state = STATES.FULFILLED;
         return Promise.resolve();
-	}
-
-	#resolveStyleSheets(element) {
-		const docResources = [...document.styleSheets].map(resource => resource.href),
-		      styleSheets  = [...element.querySelectorAll('link[rel="stylesheet"]')]
-			  		.map(sheet => !sheet.remove() && sheet.href)
-					.concat(this.#styleSheets)
-					.filter(sheet => !docResources.includes(sheet));
-
-		return Promise.allSettled(styleSheets.map(sheet => new Promise((resolve, reject) => {
-			const resource = document.createElement('link');
-			resource.href = sheet;
-			resource.rel = 'stylesheet';
-			resource.addEventListener('load', resolve);
-			resource.addEventListener('error', reject);
-			document.head.appendChild(resource);
-		})));
-  	}
+	}	
 
 	#wasClickedInBackdrop(e) {
 		const {left, right, top, bottom} = this.element.getBoundingClientRect();
@@ -192,6 +210,7 @@ export class Dialog {
 			this.element.close();
 			this.element.remove();
 			this.#lockScroll(false);
+			this.#detachStyleSheets();
 			this.#callbacks.close?.(this);
 			await this.reject();
 			this.#state = STATES.PENDING;
@@ -217,7 +236,8 @@ export class Dialog {
 				element.innerHTML = value;
 			}
 
-			await this.#resolveStyleSheets(element);
+			this.#findStyleSheets([...element.querySelectorAll('link[rel="stylesheet"]')]);
+			await this.#attachStyleSheets();
 			this.element.replaceChildren(...element.childNodes);
 		}
 
@@ -233,6 +253,8 @@ export class Dialog {
 		}
 
 		if (!this.element.open && this.#hasContent) {
+			await this.#attachStyleSheets();
+
 			document.addEventListener('click', this.#events.click);
 			document.addEventListener('keydown', this.#events.keydown);
 			document.addEventListener('pointerdown', this.#events.pointerdown);
