@@ -1,8 +1,16 @@
 # Dialog
 
-![npm](https://img.shields.io/npm/v/%40js4y%2Fdialog)
-![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40js4y%2Fdialog)
-![npm](https://img.shields.io/npm/l/%40js4y%2Fdialog)
+<p>
+    <a href="https://www.npmjs.com/package/@js4y/dialog" target="_blank">
+        <img src="https://img.shields.io/npm/v/%40js4y%2Fdialog" alt="npm">
+    </a>
+    <a href="https://www.npmjs.com/package/@js4y/dialog" target="_blank">
+        <img src="https://img.shields.io/bundlephobia/minzip/%40js4y%2Fdialog" alt="npm bundle size">
+    </a>
+    <a href="https://opensource.org/licenses/MIT" target="_blank">
+        <img src="https://img.shields.io/npm/l/%40js4y%2Fdialog" alt="license">
+    </a>
+</p>
 
 
 A tiny dependency-free javascript library built on a [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) with minimal configuration, yet sufficiently variable. Its size is only ~1.8 kb after minification and zipping.
