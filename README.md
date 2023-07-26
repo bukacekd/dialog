@@ -1,12 +1,13 @@
 # Dialog
 
-A tiny dependency-free javascript library built on a [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) with minimal configuration, yet sufficiently variable. Its size is only ~1.9 kb after minification and zipping.
+![npm](https://img.shields.io/npm/v/%40js4y%2Fdialog)
+![npm bundle size](https://img.shields.io/bundlephobia/minzip/%40js4y%2Fdialog)
+![npm](https://img.shields.io/npm/l/%40js4y%2Fdialog)
+
+
+A tiny dependency-free javascript library built on a [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) with minimal configuration, yet sufficiently variable. Its size is only ~1.8 kb after minification and zipping.
 
 Live Demo: https://bukacekd.github.io/Dialog
-
-## Demo
-
-Try the library in action.
 
 ## Features
 
