@@ -1,9 +1,9 @@
 # Dialog
 
 <p>
-    <a href="https://www.npmjs.com/package/@js4y/dialog" target="_blank"><img src="https://img.shields.io/npm/v/%40js4y%2Fdialog" alt="npm"></a>
-    <a href="https://www.npmjs.com/package/@js4y/dialog" target="_blank"><img src="https://img.shields.io/bundlephobia/minzip/%40js4y%2Fdialog" alt="npm bundle size"></a>
-    <a href="https://opensource.org/licenses/MIT" target="_blank"><img src="https://img.shields.io/npm/l/%40js4y%2Fdialog" alt="license"></a>
+    <a href="https://www.npmjs.com/package/@js4y/dialog"><img src="https://img.shields.io/npm/v/%40js4y%2Fdialog" alt="npm"></a>
+    <a href="https://www.npmjs.com/package/@js4y/dialog"><img src="https://img.shields.io/bundlephobia/minzip/%40js4y%2Fdialog" alt="npm bundle size"></a>
+    <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/%40js4y%2Fdialog" alt="license"></a>
 </p>
 
 
