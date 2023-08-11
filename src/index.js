@@ -49,7 +49,7 @@ export class Dialog {
 		if (id) {
 			this.element.id = id;
 		}
-		
+
 		this.content(content);
 		dialogInstances.add(this);
 	}
@@ -76,7 +76,7 @@ export class Dialog {
 			document.head.appendChild(resource);
 			this.#styleSheets.set(url, resource);
 		})));
-  	}
+	}
 
 	#clearTimeouts() {
 		if (this.#canClearTimeouts) {
@@ -105,7 +105,7 @@ export class Dialog {
 		});
 	}
 
-  	#lockScroll(force) {
+	#lockScroll(force) {
 		if (visibleDialogs.size > 0) {
 			return;
 		}
@@ -122,17 +122,17 @@ export class Dialog {
 			isIOS && document.documentElement.scrollTo(scrolloptions);
 		}
 	}
-	
+
 	#onClick(e) {
 		if (this.#isLastVisible) {
 			if (this.#sourceTarget === document.documentElement && e.target === document.documentElement) {
 				this.#wasClickedInBackdrop(e) && this.close();
-			  } else {
+			} else {
 				const target = e.target.closest('[data-dialog-action]');
-				
+
 				if (target) {
 					const actions = e.target.dataset.dialogAction.toLowerCase().split(/\s+/);
-					
+
 					(async () => {
 						for (let action of actions) {
 							await this[action]?.();
@@ -141,7 +141,7 @@ export class Dialog {
 				}
 			}
 			this.#sourceTarget = null;
-		}		
+		}
 	}
 
 	#onKeydown(e) {
@@ -157,7 +157,7 @@ export class Dialog {
 				// prevent user-select in firefox
 				e.preventDefault();
 			}
-	
+
 			this.#sourceTarget = e.target;
 		}
 	}
@@ -172,26 +172,26 @@ export class Dialog {
 		}
         this.#state = STATES.FULFILLED;
         return Promise.resolve();
-	}	
+	}
 
 	#wasClickedInBackdrop(e) {
 		const {left, right, top, bottom} = this.element.getBoundingClientRect();
 		return left > e.clientX || right < e.clientX || top > e.clientY || bottom < e.clientY;
 	}
-	
+
 	abort() {
 		this.#abort.abort();
 		this.#abort = new AbortController();
-		
+
 		if (!this.#hasContent) {
 			visibleDialogs.delete(this);
-    	}
+		}
 		return this;
 	}
-	
+
 	async close(delay) {
 		this.#clearTimeouts();
-		
+
 		if (typeof delay === 'number' && delay > 0) {
 			await new Promise(resolve => {this.#closeTimeout = setTimeout(() => resolve(), delay)});
 		}
@@ -216,10 +216,10 @@ export class Dialog {
 			this.#state = STATES.PENDING;
 		}
 
-    	return Promise.resolve();
-  	}
-  
-  	async content(value, delay) {
+		return Promise.resolve();
+	}
+
+	async content(value, delay) {
 		if (value != null) {
 			this.#clearTimeouts();
 			this.abort();
@@ -242,9 +242,10 @@ export class Dialog {
 		}
 
 		this.#canClearTimeouts = false;
+
 		return this.open(delay);
-  	}
-  
+	}
+
     async open(delay) {
 		this.#clearTimeouts();
 
@@ -275,7 +276,7 @@ export class Dialog {
 		}
 
 		return Promise.resolve();
-  	}
+	}
 
     then(callback) {
 		if (typeof callback === 'function') {
