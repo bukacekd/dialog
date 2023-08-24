@@ -63,7 +63,7 @@ The library offers a set of configuration items. Below is an overview of them.
 
 ```javascript
 new Dialog({
-    classname?: string,
+    className?: string,
     id?: string,
     content: string | AsyncFunction | Function | HTMLElement,
     open?: Function,
@@ -374,7 +374,7 @@ Examples of animated dialogs:
 
 | ![alt chrome](images/chrome.png) | ![alt edge](images/edge.png)  | ![alt firefox](images/firefox.png)  | ![alt opera](images/opera.png) | ![alt safari](images/safari.png) |
 | :-: | :-: | :-: | :-: | :-: |
-| Chrome 84+ | Edge 84+ | Firefox 90+ | Opera 70+ | Safari 14.1+ |
+| Chrome 84+ | Edge 84+ | Firefox 98+ | Opera 70+ | Safari 15.4+ |
 
 ## License
 
