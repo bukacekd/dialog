@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.0.6
+
+- UPDATED: Documentation.
+
 ## 1.0.5
 
 - UPDATED: Documentation.
