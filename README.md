@@ -3,7 +3,7 @@
 <p>
     <a href="https://www.npmjs.com/package/@js4y/dialog"><img src="https://img.shields.io/badge/dependencies-none-green.svg" alt="none dependencies"></a>
     <a href="https://www.npmjs.com/package/@js4y/dialog"><img src="https://img.shields.io/npm/v/%40js4y%2Fdialog" alt="npm"></a>
-    <a href="https://www.npmjs.com/package/@js4y/dialog"><img src="https://img.shields.io/bundlephobia/minzip/%40js4y%2Fdialog" alt="npm bundle size"></a>
+    <a href="https://www.npmjs.com/package/@js4y/dialog"><img src="https://deno.bundlejs.com/badge?q=@js4y/dialog&treeshake=[*]" alt="npm bundle size"></a>
     <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/npm/l/%40js4y%2Fdialog" alt="license"></a>
 </p>
 
@@ -271,7 +271,7 @@ dialog.resolve('😀');
 Executes the callback function of `catch` method. The `catch` method is always executed only once regardless of the number of calls to the `reject` method.
 
 ```javascript
-dialog.resolve('😢');
+dialog.reject('😢');
 ```
 
 ### then(callback: `AsyncFunction | Function`): Dialog
@@ -336,38 +336,38 @@ The dialog does not contain any styles, except for the basic styles specific to 
 Examples of animated dialogs:
 
 ```css
-    dialog,
-    dialog::backdrop {
-        opacity: 0;
-        transition: opacity .3s;
-    }
+dialog,
+dialog::backdrop {
+    opacity: 0;
+    transition: opacity .3s;
+}
 
-    [data-dialog-state="open"],
-    [data-dialog-state="open"]::backdrop {
-        opacity: 1;
-    }
+[data-dialog-state="open"],
+[data-dialog-state="open"]::backdrop {
+    opacity: 1;
+}
 
-    // or
+// or
 
-    dialog {
-        translate: 0 15%;
-    }
+dialog {
+    translate: 0 15%;
+}
 
-    dialog,
-    dialog::backdrop {
-        opacity: 0;
-        transition: opacity .3s, translate .3s;
-    }
+dialog,
+dialog::backdrop {
+    opacity: 0;
+    transition: opacity .3s, translate .3s;
+}
 
-    [data-dialog-state="open"],
-    [data-dialog-state="open"]::backdrop {
-        opacity: 1;
-        translate: none;
-    }
+[data-dialog-state="open"],
+[data-dialog-state="open"]::backdrop {
+    opacity: 1;
+    translate: none;
+}
 
-    [data-dialog-state="close"] {
-        translate: 0 -15%;
-    }
+[data-dialog-state="close"] {
+    translate: 0 -15%;
+}
 ```
 
 ## Browser support
@@ -382,4 +382,5 @@ The project is licensed under [MIT license](https://opensource.org/license/mit/)
 
 ## Related
 
+- [Loader](https://github.com/bukacekd/Loader) - A tiny dependency-free javascript loading spinner component with minimal configuration.
 - [lock-scroll](https://github.com/bukacekd/lock-scroll) - A set of methods to lock scrolling within an element or an entire page.
