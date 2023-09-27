@@ -9,7 +9,7 @@
 
 A tiny dependency-free javascript library built on a [dialog element](https://developer.mozilla.org/en-US/docs/Web/HTML/Element/dialog) with minimal configuration, yet sufficiently variable.
 
-Live Demo: https://bukacekd.github.io/Dialog
+Live Demo: https://bukacekd.github.io/dialog
 
 ## Features
 
