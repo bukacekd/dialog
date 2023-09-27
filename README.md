@@ -382,5 +382,6 @@ The project is licensed under [MIT license](https://opensource.org/license/mit/)
 
 ## Related
 
-- [Loader](https://github.com/bukacekd/Loader) - A tiny dependency-free javascript loading spinner component with minimal configuration.
-- [lock-scroll](https://github.com/bukacekd/lock-scroll) - A set of methods to lock scrolling within an element or an entire page.
+- [CountUp](https://github.com/bukacekd/count-up) - A tiny dependency-free JavaSript library for animating numeric values.
+- [Loader](https://github.com/bukacekd/loader) - A tiny dependency-free javascript loading spinner component with minimal configuration.
+- [lockScroll](https://github.com/bukacekd/lock-scroll) - A set of methods to lock scrolling within an element or an entire page.
