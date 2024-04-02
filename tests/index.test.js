@@ -2,7 +2,6 @@ import {expect, test, vi} from 'vitest';
 import {Dialog} from '../src/index.js';
 
 HTMLElement.prototype.getAnimations = vi.fn(() => []);
-vi.spyOn(window, 'fetch').mockImplementation(() => Promise.resolve(new Response()));
 vi.spyOn(document, 'baseURI', 'get').mockImplementation(() => 'https://localhost');
 
 const createDialog = () => {

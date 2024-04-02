@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.0
+
+- ADDED: Constructable stylesheets support.
+
 ## 1.0.7
 
 - UPDATED: Documentation.

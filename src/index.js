@@ -15,6 +15,7 @@ export class Dialog {
 	#callbacks;
 	#canClearTimeouts = true;
 	#closeTimeout;
+	#constructableSheets;
 	#events;
 	#openTimeout;
 	#reject;
@@ -23,7 +24,7 @@ export class Dialog {
 	#state = STATES.PENDING;
 	#styleSheets = new Map();
 
-	constructor({className, content, id, open, close, styleSheets} = {}) {
+	constructor({className, close, constructableSheets, content, id, open, styleSheets} = {}) {
 		const instance = [...dialogInstances].find(dialog => dialog.element.id === id);
 
 		if (instance) {
@@ -34,6 +35,7 @@ export class Dialog {
 		this.#callbacks = {close, open};
 		this.element    = document.createElement('dialog');
 
+		this.#constructableSheets = [].concat(constructableSheets).filter(sheet => sheet instanceof CSSStyleSheet);
 		this.#findStyleSheets([].concat(styleSheets).filter(sheet => typeof sheet === 'string'));
 
 		this.#events = {
@@ -62,6 +64,10 @@ export class Dialog {
 		return [...visibleDialogs].pop() === this;
 	}
 
+	#attachConstructableSheets() {
+		this.#constructableSheets.forEach(sheet => document.adoptedStyleSheets.push(sheet));
+	}
+
 	#attachStyleSheets() {
 		return Promise.allSettled([...this.#styleSheets].map(([url, sheet]) => new Promise((resolve, reject) => {
 			if (sheet) {
@@ -85,6 +91,11 @@ export class Dialog {
 		}
 
 		this.#canClearTimeouts = true;
+	}
+
+	#detachConstructableSheets() {
+		document.adoptedStyleSheets = document.adoptedStyleSheets
+			.filter(sheet => !this.#constructableSheets.includes(sheet));
 	}
 
 	#detachStyleSheets() {
@@ -210,6 +221,7 @@ export class Dialog {
 			this.element.close();
 			this.element.remove();
 			this.#lockScroll(false);
+			this.#detachConstructableSheets();
 			this.#detachStyleSheets();
 			this.#callbacks.close?.(this);
 			await this.reject();
@@ -254,6 +266,7 @@ export class Dialog {
 		}
 
 		if (!this.element.open && this.#hasContent) {
+			this.#attachConstructableSheets();
 			await this.#attachStyleSheets();
 
 			document.addEventListener('click', this.#events.click);

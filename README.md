@@ -15,7 +15,7 @@ Live Demo: https://bukacekd.github.io/dialog
 
 - closing the dialog using the `escape` key
 - closing the dialog by click on the [backdrop](#styling) or element with the [corresponding data attribute](#actions)
-- loading [external styles](#stylesheets)
+- loading [external styles](#stylesheets) or attaching [constructable stylesheets](#constructablesheets)
 - preventing scrolling of the page when displaying the dialog
 - simple [configuration](#configuration) and [api](#properties)
 
@@ -64,10 +64,11 @@ The library offers a set of configuration items. Below is an overview of them.
 ```javascript
 new Dialog({
     className?: string,
-    id?: string,
-    content: string | AsyncFunction | Function | HTMLElement,
-    open?: Function,
     close?: Function,
+    constructableSheets?: Array<CSSStyleSheet>,
+    content: string | AsyncFunction | Function | HTMLElement,
+    id?: string,
+    open?: Function,
     styleSheets?: Array<string>
 });
 ```
@@ -80,7 +81,7 @@ CSS class of dialog.
 
 ```javascript
 new Dialog({
-    className: 'my-dialog',
+    className: 'my-dialog'
 });
 ```
 
@@ -93,12 +94,12 @@ CSS Identifier of dialog. If you try to create multiple dialogs with the same id
 ```javascript
 const dialog1 = new Dialog({
     id: 'my-dialog',
-    content: 'old content',
+    content: 'old content'
 });
 
 const dialog2 = new Dialog({
     id: 'my-dialog',
-    content: 'new content',
+    content: 'new content'
 });
 
 dialog1 === dialog2;
@@ -114,7 +115,7 @@ The content that will be displayed.
 
 ```javascript
 new Dialog({
-    content: 'Hello <b>world</b>!',
+    content: 'Hello <b>world</b>!'
 });
 
 new Dialog({
@@ -141,7 +142,7 @@ The function is fired when the dialog is opened. The function parameter correspo
 
 ```javascript
 new Dialog({
-    open: dialog => console.log('opened', dialog),
+    open: dialog => console.log('opened', dialog)
 });
 ```
 
@@ -153,7 +154,32 @@ The function is fired when the dialog is closed. The function parameter correspo
 
 ```javascript
 new Dialog({
-    close: => console.log('closed', dialog),
+    close: => console.log('closed', dialog)
+});
+```
+
+### constructableSheets
+
+required: `false`, type: `Array<CSSStyleSheet>`
+
+List of constructable stylesheets. Can only be used if the browser supports [constructable stylesheets](https://caniuse.com/mdn-api_cssstylesheet_cssstylesheet) and [adoptedStyleSheets](https://caniuse.com/mdn-api_document_adoptedstylesheets).
+
+```javascript
+const sheet = new CSSStyleSheet();
+sheet.replaceSync('<any style rules>');
+
+new Dialog({
+    constructableSheets: [sheet]
+});
+```
+
+If your browser supports [import attributes](https://github.com/tc39/proposal-import-attributes), then you can use:
+
+```javascript
+import sheet from '/dialog.css' with { type: 'css' };
+
+new Dialog({
+    constructableSheets: [sheet]
 });
 ```
 
@@ -165,7 +191,7 @@ List of url addresses of external css styles. Styles are loaded asynchronously
 
 ```javascript
 new Dialog({
-    styleSheets: ['/dialog.css'],
+    styleSheets: ['/dialog.css']
 });
 ```
 
@@ -176,7 +202,7 @@ new Dialog({
     content: `
         <link href="/dialog.css" rel="stylesheet">
         Hello <b>world</b>!
-    `,
+    `
 });
 ```
 
@@ -310,7 +336,7 @@ new Dialog({
         Are you sure?
         <button data-dialog-action="resolve close">Yes</button>
         <button data-dialog-action="reject close">No</button>
-    `,
+    `
 })
 .then(() => console.log('resolve'))
 .catch(() => console.log('reject'));
