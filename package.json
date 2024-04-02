@@ -1,6 +1,6 @@
 {
   "name": "@js4y/dialog",
-  "version": "1.0.7",
+  "version": "1.1.0",
   "description": "A tiny dependency-free JavaSript ES6 library built on a dialog element with minimal configuration.",
   "author": "David Bukacek <https://github.com/bukacekd>",
   "license": "MIT",
