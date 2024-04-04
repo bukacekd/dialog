@@ -1,6 +1,6 @@
 {
   "name": "@js4y/dialog",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "A tiny dependency-free JavaSript ES6 library built on a dialog element with minimal configuration.",
   "author": "David Bukacek <https://github.com/bukacekd>",
   "license": "MIT",
@@ -30,9 +30,7 @@
   "jsdelivr": "dist/index.js",
   "unpkg": "dist/index.js",
   "scripts": {
-    "build:library:esm": "esbuild src/index.js --outfile=dist/index.mjs --format=esm --minify",
-    "build:library:iife": "esbuild src/index.js --outfile=dist/index.js --format=iife --minify --global-name=js4y.components",
-    "build": "npm run lint && npm run build:library:esm && npm run build:library:iife",
+    "build": "npm run lint && node esbuild.config.js",
     "docs": "vite build --config src-docs/vite.config.js",
     "docs:dev": "vite --config src-docs/vite.config.js --open",
     "docs:preview": "vite preview --config src-docs/vite.config.js --open",

@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.1
+
+- FIXED: Namespace collision of  `iife` bundle when using multiple [js4y](https://github.com/bukacekd) libraries on the same html page.
+
 ## 1.1.0
 
 - ADDED: Constructable stylesheets support.
