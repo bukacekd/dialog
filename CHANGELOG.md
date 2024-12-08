@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.2
+
+- UPDATED: NPM packages dependencies.
+
 ## 1.1.1
 
 - FIXED: Namespace collision of  `iife` bundle when using multiple [js4y](https://github.com/bukacekd) libraries on the same html page.
