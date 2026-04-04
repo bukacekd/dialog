@@ -1,5 +1,9 @@
 # Changelog
 
+## 1.1.3
+
+- UPDATED: NPM packages dependencies.
+
 ## 1.1.2
 
 - UPDATED: NPM packages dependencies.
